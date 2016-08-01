@@ -37,4 +37,22 @@
   [car performSelector:driveMethod withObject:@"Guangzhou" withObject:@"Shenzhen"];
 ```
 
+* A protocol is a group of properties and methods that can be implemented by any class interfaces. 
+
+```
+  @protocol Runnable <NSObject>
+    - (void)sayYourName:(NSString *)name;
+  @end
+```
+
+* Using protocol to make type check.
+
+```
+  id <Runnable> objectCanRun = [[Car alloc] init]; // 范型?
+```
+
+Objects are of class that implemented the Runnable protocol can be assigned to variable `objectCanRun`, even they are
+classes that without any relationships.
+
+A common use case is to let you alter the behavior of certain classes without the need to subclass them.
 
