@@ -56,3 +56,45 @@ classes that without any relationships.
 
 A common use case is to let you alter the behavior of certain classes without the need to subclass them.
 
+* Category
+
+Category is used to extend existing classed without modifying the original source code. This can avoid monolithic big
+class. And you can split them into different modules, and combine the parts you need when use them. Categories are just
+implemented as normal Objective-C class's .h and .m files.
+
+Car+Maintenance.h
+```
+#import 'Car.h';
+
+@interface Car (Maintenance)
+
+- (void)saySomething;
+
+@end
+
+```
+
+Car+Maintenance.m
+```
+#import 'Car+Maintenance.h'
+
+@implementation Car (Maintenance)
+
+- (void)doSomething {
+  NSLog(@"Hello World");
+}
+
+@end
+```
+
+main.m
+```
+#import 'Car.h'
+#import 'Car+Maintenance.h'
+...
+```
+
+Categories can be used to implement "protected" methods, thought I don't think it's useful.
+
+* All methods in Objective-C are public, there is no way to truly hide them from client code.
+
