@@ -98,3 +98,30 @@ Categories can be used to implement "protected" methods, thought I don't think i
 
 * All methods in Objective-C are public, there is no way to truly hide them from client code.
 
+* Blocks are just like functions. But they can be dynamically created at runtime, and they are anonymous and share state
+  inside the blocks that defined them, that says closures. They can be created, passed, and returned, and seems that
+  they are higher-order functions in JavaScript and other functional programming languages.
+
+```
+int (^saySomethingDirty)(int, int); // declare a block variable, just like defining a funciton pointer.
+saySomethingDirty = ^int(int x, inty) { // create and assign a new block to that variable
+  return x + y;
+};
+saySomethingDirty(x, y); // call it just like normal function
+```
+
+The form of defining a block is real just like defining a function pointer, and also, you can use `typedef` to define a
+new type to avoid verbose code.
+
+```
+typedef int(^SaySomethingDirty)(int, int); // now you are defining a new type
+
+...
+int main () {
+  SaySomethingdDirty dirtyFunc = ^(int x, int y) {
+    // return type can be omitted, if there are no parameters, (..) can be also ommited.
+    return x + y;
+  };
+}
+```
+
